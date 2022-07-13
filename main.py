@@ -104,7 +104,7 @@ while play:
         # попаднаия пуль в НЛО
         collisions = pg.sprite.groupcollide(aliens, fiers, True, True)
         for a, f in collisions.items():       
-            print(a.rect.x, f[0].rect.x)
+            #print(a.rect.x, f[0].rect.x)
             SCORE += 1
             if SCORE % FIRE_BONUS == 0: 
                 # каждые десять очков бонус к стрельбе
