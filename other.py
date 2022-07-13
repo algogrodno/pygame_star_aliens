@@ -1,9 +1,9 @@
 import pygame as pg
-from sprites import Star
+#from sprites import Star
 from random import randint
 from config import *
-from math import sqrt
-from sprites import Alien
+#from math import sqrt
+#from sprites import Alien
 
 def set_text(scr, text, size = 10, pos = (0,0), color = (255,255,55)):
     font = pg.font.Font(None, size)
@@ -17,7 +17,7 @@ def alien_add(aliens, ship):
     dist = 0
     # while dist<200:
     x = randint(-300, WINDOWS_SIZE[0]+300)                         
-    y = randint(1, WINDOWS_SIZE[1])
+    #y = randint(1, WINDOWS_SIZE[1])
         # dx = ship.x - x
         # dy = ship.y - y
         # dist = sqrt( dx**2 + dy**2 )

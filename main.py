@@ -30,7 +30,7 @@ for i in range(20): starss.add(Star(True))
 fl = []
 stars = []
 
-aliens = []
+# aliens = []
 play = True
 
 key_wait = 0
@@ -57,13 +57,13 @@ while play:
         #     if e.key == pg.K_UP:
         #         ship.sety(True)
     if pg.key.get_pressed()[pg.K_DOWN]:
-        ship.sety(False)
+        ship.movey = 'down'
     if pg.key.get_pressed()[pg.K_UP]:
-        ship.sety(True)
+        ship.movey = 'up'
     if pg.key.get_pressed()[pg.K_RIGHT]:
-        ship.setx(True)
+        ship.movex = 'right'
     if pg.key.get_pressed()[pg.K_LEFT]:
-        ship.setx(False)
+        ship.movex = 'left'
     if pg.key.get_pressed()[pg.K_2]:
         ship.speed += 1
     if pg.key.get_pressed()[pg.K_1]:
@@ -81,8 +81,10 @@ while play:
             if alien.speed > 2:  alien.speed -= 1 
             else: alien.speed =  1
     if pg.key.get_pressed()[pg.K_SPACE]:
-        fl.append(Fire())
-        fl[len(fl)-1].fire(ship, FIRE_WAIT, s_fire)    
+        ship.fire(fiers)
+        s_fire.play() # звук выстрела
+        #fl.append(Fire())
+        #fl[len(fl)-1].fire(ship, FIRE_WAIT, s_fire)    
     if pg.key.get_pressed()[pg.K_q]:
         
         aliens = alien_add(aliens, ship)
@@ -101,12 +103,13 @@ while play:
     
     
     if TICKS % NEW_ALIEN_WAIT == 0 :
-        if ALIEN: aliens = alien_add(aliens, ship)
+        if ALIEN and len(aliens) < ALIENS_LIMIT:  
+            aliens.add(Alien('pic\\starship4.png', 
+                            randint(-300, WINDOWS_SIZE[0]+300), -100, 100,90))
     
-    for alien in aliens:
-        if alien.visible: alien.update(mw, ship)
-        else: aliens.remove(alien)
-        
+    
+    aliens.update(ship)
+    aliens.draw(mw)
     
     for f in fl:
         if f.visible: f.update(mw)
@@ -130,9 +133,14 @@ while play:
 
                 
                 
-
+    ship.update()
     ship.draw(mw)
     
+    t2 = time()
+    if t2-t > 1:                        
+        t = t2        
+        fps = TICKS-ticks
+        ticks = TICKS
 
     set_text(mw, f"Скорость - {ship.speed}", 30, (10,10))    
     set_text(mw, f"Огонь - {int(FIRE_WAIT)}", 30, (870,10))
@@ -140,12 +148,7 @@ while play:
     set_text(mw, f"Чужих - {len(aliens)}", 30, (10,680))
     set_text(mw,f"ОЧКИ - {SCORE}", 40, (500,10))
     set_text(mw,f"звезд-{len(starss)}", 30, (500,680))
-    
-    t2 = time()
-    if t2-t > 1:                        
-        t = t2        
-        fps = TICKS-ticks
-        ticks = TICKS
+    set_text(mw, f"x-{ship.rect.x} y-{ship.rect.y}", 30, (150,680))
     set_text(mw,f"fps-{fps}", 30, (700,680))
 
 
