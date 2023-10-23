@@ -16,8 +16,8 @@ def set_text(scr, text, size = 10, pos = (0,0), color = (255,255,55)):
 def alien_add(aliens, speed, ufo_sprites):      
     x = randint(-200, WINDOWS_SIZE[0]+200) 
     y = -100
-    if len(aliens) <20:
-        aliens.add(Alien('pic\\ufo1.png', x, y, 100,90, speed, ufo_sprites))
+    # макс количество в конфиге ALIENS_LIMIT
+    aliens.add(Alien('111', x, y, 100, 90, speed, ufo_sprites))
     return aliens
 
 def game_over(scr):

@@ -15,18 +15,22 @@ clock = pg.time.Clock()
 
 
 background = pg.transform.scale(pg.image.load('pic\\fon1.jpg'),(WINDOWS_SIZE))
-ship = Ship('pic\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]/2,70,100)
+ship = Ship('pic\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]-150,70,100)
 
 #boom_sprites = sprites_load('pic\\boom2', (100,100), (0,0,0))
 #boom_sprites = sprites_load('pic\\boom3', (100,100))
 boom_sprites = sprites_load('pic\\boom4', 'boom', (100,100), (0,0,0))
 ufo_sprites = sprites_load('pic\\ufo1', 'ufo', (100,90))
+meteors_sprites = [sprites_load('pic\\meteor1', 'meteor', (80,80)),
+                   sprites_load('pic\\meteor1', 'meteor', (60,60)),
+                   sprites_load('pic\\meteor1', 'meteor', (40,40))]
+# print(len(meteors_sprites))
 
 
 sound_fon = pg.mixer.Sound('snd\\fon1.mp3')
 sound_fire = pg.mixer.Sound('snd\\fire1.mp3')
 sound_boom = pg.mixer.Sound('snd\\boom1.mp3')
-sound_fon.set_volume(0.1)
+sound_fon.set_volume(0.01)
 sound_fire.set_volume(0.1)
 sound_boom.set_volume(0.1)
 sound_fon.play(-1)
@@ -36,6 +40,7 @@ stars = pg.sprite.Group()
 fiers = pg.sprite.Group()
 aliens = pg.sprite.Group()
 booms = pg.sprite.Group()
+meteors = pg.sprite.Group()
 
 for i in range(20): stars.add(Star(True))
 
@@ -65,57 +70,69 @@ while play:
             #     elif e.key == pg.K_DOWN:
             #         print('down-no')
 
+    
+    mw.blit(background,(0,0))
+
+    if TICKS % STAR_WAIT == 0:        
+        stars.add(Star())
+
+    stars.update()
+    stars.draw(mw)
+
     if gameover:
         game_over(mw)        
     else:
-        mw.blit(background,(0,0))
-
         
 
-        if pg.key.get_pressed()[pg.K_DOWN]:
-            ship.movey = 'down'
-        if pg.key.get_pressed()[pg.K_UP]:
-            ship.movey = 'up'
-        if pg.key.get_pressed()[pg.K_RIGHT]:
-            ship.movex = 'right'
-        if pg.key.get_pressed()[pg.K_LEFT]:
-            ship.movex = 'left'
-        if pg.key.get_pressed()[pg.K_SPACE]: # ОГОНЬ
-            ship.fire(fiers, sound_fire, FIRE_WAIT)  
+        if True: # управление 
+            if pg.key.get_pressed()[pg.K_DOWN]:
+                ship.movey = 'down'
+            if pg.key.get_pressed()[pg.K_UP]:
+                ship.movey = 'up'
+            if pg.key.get_pressed()[pg.K_RIGHT]:
+                ship.movex = 'right'
+            if pg.key.get_pressed()[pg.K_LEFT]:
+                ship.movex = 'left'
+            if pg.key.get_pressed()[pg.K_SPACE]: # ОГОНЬ
+                ship.fire(fiers, sound_fire, FIRE_WAIT)  
 
-        if pg.key.get_pressed()[pg.K_1]: # скорость корабля -
-            ship.speed -= 1        
-        if pg.key.get_pressed()[pg.K_2]: # скорость корабля +
-            ship.speed += 1
-        if pg.key.get_pressed()[pg.K_3]: # скорость стрельбы +        
-            if FIRE_WAIT > 2:  FIRE_WAIT -= 1 
-            else: FIRE_WAIT =  1
-        if pg.key.get_pressed()[pg.K_4]: # скорость стрельбы -
-            FIRE_WAIT += 1    
-        if pg.key.get_pressed()[pg.K_5]: # скорость НЛО +
-            for alien in aliens:
-                alien.speed += 1        
-        if pg.key.get_pressed()[pg.K_6]: # скорость НЛО +
-            for alien in aliens:            
-                if alien.speed > 2:  alien.speed -= 1 
-                else: alien.speed =  1
+            if pg.key.get_pressed()[pg.K_1]: # скорость корабля -
+                ship.speed -= 1        
+            if pg.key.get_pressed()[pg.K_2]: # скорость корабля +
+                ship.speed += 1
+            if pg.key.get_pressed()[pg.K_3]: # скорость стрельбы +        
+                if FIRE_WAIT > 2:  FIRE_WAIT -= 1 
+                else: FIRE_WAIT =  1
+            if pg.key.get_pressed()[pg.K_4]: # скорость стрельбы -
+                FIRE_WAIT += 1    
+            if pg.key.get_pressed()[pg.K_5]: # скорость НЛО +
+                for alien in aliens:
+                    alien.speed += 1        
+            if pg.key.get_pressed()[pg.K_6]: # скорость НЛО +
+                for alien in aliens:            
+                    if alien.speed > 2:  alien.speed -= 1 
+                    else: alien.speed =  1
+            
+            if pg.key.get_pressed()[pg.K_q]:    # Добавить НЛО
+                Alien(ufo_sprites, aliens)
+                alien_wait = 5
+            if pg.key.get_pressed()[pg.K_a]:  # включить/выключить появление НЛО
+                if key_wait == 0:
+                    ALIEN = not ALIEN
+                    key_wait = KEY_WAIT
+                else:
+                    key_wait -= 1 
+            
         
-        if pg.key.get_pressed()[pg.K_q]:    # Добавить НЛО
-            alien_add(aliens, ALIEN_SPEED, ufo_sprites)
-            alien_wait = 5
-        if pg.key.get_pressed()[pg.K_a]:  # включить/выключить появление НЛО
-            if key_wait == 0:
-                ALIEN = not ALIEN
-                key_wait = KEY_WAIT
-            else:
-                key_wait -= 1 
-        
-        
-        
-
         # добавляем НЛО через заданный период
         if TICKS % NEW_ALIEN_WAIT == 0 :
-            if ALIEN and len(aliens) < ALIENS_LIMIT:  alien_add(aliens, ALIEN_SPEED, ufo_sprites)
+            if ALIEN and len(aliens) < ALIENS_LIMIT:  
+                #alien_add(aliens, ALIEN_SPEED, ufo_sprites)
+                Alien(ufo_sprites, aliens)
+        
+        # добавляем метеоры через заданный период
+        if TICKS % NEW_METEOR_WAIT == 0 :            
+            Meteor(meteors_sprites, meteors)
 
 
         # попаднаия пуль в НЛО
@@ -146,12 +163,15 @@ while play:
         
         fiers.update()
         fiers.draw(mw)            
-                    
-        ship.update()
-        ship.draw(mw)
-
+        
         booms.update()
         booms.draw(mw)
+
+        meteors.update()
+        meteors.draw(mw)
+        
+        ship.update()
+        ship.draw(mw)
         
         # подсчет FPS
         t2 = time()
@@ -172,11 +192,10 @@ while play:
 
     
     # добавляем звезды через заданный период
-    if TICKS % STAR_WAIT == 0:        
-        stars.add(Star())
+    # тут для того что бы ивдны были даже когда гамеовер
+    
 
-    stars.update()
-    stars.draw(mw)
+    
 
     pg.display.update()
     clock.tick(FPS)
