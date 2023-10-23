@@ -5,11 +5,10 @@ from math import sqrt
 from time import time
 
 
-class Game_sprite(pg.sprite.Sprite):
-    
+class Game_sprite(pg.sprite.Sprite):    
     def __init__(self, image = None, x = 0, y = 0, w = None, h = None) -> None:
         super().__init__()        
-        self.image = (pg.image.load(image)) if image else None   
+        self.image = (pg.image.load(image)) if image else None        
         if w and h:
             self.image = pg.transform.scale(self.image, (w,h))        
         self.rect  = self.image.get_rect()
@@ -69,13 +68,23 @@ class Ship(Game_sprite):
 class Alien(Game_sprite):
     def __init__(self, image, x, y, w=None, h=None, speed=1) -> None:
         super().__init__(image, x, y, w, h)        
+        self.image_orig = self.image
+        self.type = randint(1,3)
         self.visible = True
         self.speed = speed
         self.x = x # свой х и у т.к. rect.x - округляет до целого
-        self.y = y
+        self.y = y # а для подсчета направления по вектору нужны дроби
+        
+        #для вращения
+        #self.rotate = randint(-10, 10)        
+        self.angle_rotate = randint(-15, 15) # для постоянного вращения
+        self.angle_max = randint(1,20)
+        self.angle_min = -self.angle_max        
+        self.angle = randint(self.angle_min, self.angle_max)
+        self.angle_step = 1 if self.angle >= 0 else -1
+    
     def update(self, ship):
-        dx = ship.rect.x - self.x # вектор направдения на корабль
-        dy = ship.rect.y - self.y
+        dx, dy = ship.rect.x - self.x, ship.rect.y - self.y # вектор направдения на корабль        
         dist = sqrt( dx**2 + dy**2 ) # дистанция до корабля       
         # dx = dx / dist * self.speed 
         # dy = dy / dist * self.speed        
@@ -83,11 +92,45 @@ class Alien(Game_sprite):
         self.y += dy / dist * self.speed
         self.rect.x = self.x
         self.rect.y = self.y
-        #self.draw(scr)
+
+        self.spr_rotate_back()
+    
+    def spr_rotate(self, angle):
+        '''поворачивает спрайт на установленный градус'''        
+        # создаем каждый раз новую каритнку из оригинала
+        # т.к. если поворачивать оригинал будет сильное искажение        
+        self.image = pg.transform.rotate(self.image_orig, angle)
+        self.rect_r = self.image.get_rect()
+        # приравниваем кординады новой картинки у позиции данного спрайта
+        self.rect_r.x = self.rect.x
+        self.rect_r.y = self.rect.y
+        # ищем на сколько отличается центр новой картинки
+        w_delta = self.rect_r.center[0] - self.rect.center[0]
+        h_delta = self.rect_r.center[1] - self.rect.center[1]
+        # и смещаем коринаты ровно на столько
+        self.rect.x -= w_delta
+        self.rect.y -= h_delta
         
         
-    def draw(self, scr):
-        scr.blit(self.image, (self.x, self.y))
+
+    def spr_rotate_normal(self):
+        '''        
+        производит вращение всегда в одну сторону
+        на за ранее установленный градус (self.angle_rotate)
+        '''
+        self.spr_rotate(self.angle)
+        self.angle = (self.angle + self.angle_rotate)%360
+
+    def spr_rotate_back(self):
+        '''   вращение  вперед и обратно    '''
+        self.spr_rotate(self.angle)
+        if abs(self.angle) > self.angle_max:
+            self.angle_step *= -1
+        self.angle += self.angle_step
+        #print(self.angle)
+
+
+
 
     
 

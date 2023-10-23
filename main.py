@@ -14,12 +14,14 @@ mw.fill(BACK_COLOR)
 clock = pg.time.Clock()
 
 background = pg.transform.scale(pg.image.load('pic\\fon1.jpg'),(WINDOWS_SIZE))
+
 ship = Ship('pic\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]/2,70,100)
 
 sound_fon = pg.mixer.Sound('snd\\fon1.mp3')
 sound_fire = pg.mixer.Sound('snd\\fire1.mp3')
 sound_boom = pg.mixer.Sound('snd\\boom1.mp3')
-sound_fon.set_volume(0.01)
+
+sound_fon.set_volume(0.1)
 sound_fire.set_volume(0.1)
 sound_boom.set_volume(0.1)
 sound_fon.play(-1)
@@ -28,23 +30,23 @@ stars = pg.sprite.Group()
 fiers = pg.sprite.Group()
 aliens = pg.sprite.Group()
 booms = pg.sprite.Group()
+
 for i in range(20): stars.add(Star(True))
 
 
 
-# aliens = []
-play = True
-
-key_wait = 0
 #boom_sprites = sprites_load('pic\\boom2', (100,100), (0,0,0))
 #boom_sprites = sprites_load('pic\\boom3', (100,100))
 boom_sprites = sprites_load('pic\\boom4', (100,100), (0,0,0))
+
 SCORE = 0
 TICKS = 0
 ticks = 0
 fps = 0
-t = time()
+key_wait = 0
+play = True
 gameover = False
+t = time()
 
 while play:
     for e in pg.event.get():            
@@ -52,16 +54,16 @@ while play:
                     (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):
                 play  = False    
     
-            if e.type == pg.KEYDOWN:
-                if e.key == pg.K_UP:
-                    print('up-ok')
-                elif e.key == pg.K_DOWN:
-                    print('down-ok')
-            elif e.type == pg.KEYUP:
-                if e.key == pg.K_UP:
-                    print('up-no')
-                elif e.key == pg.K_DOWN:
-                    print('down-no')
+            # if e.type == pg.KEYDOWN:
+            #     if e.key == pg.K_UP:
+            #         print('up-ok')
+            #     elif e.key == pg.K_DOWN:
+            #         print('down-ok')
+            # elif e.type == pg.KEYUP:
+            #     if e.key == pg.K_UP:
+            #         print('up-no')
+            #     elif e.key == pg.K_DOWN:
+            #         print('down-no')
 
     if gameover:
         game_over(mw)        
@@ -129,15 +131,15 @@ while play:
             if NEW_ALIEN_WAIT <= 0 : NEW_ALIEN_WAIT = 4
             ALIEN_SPEED += 0.05
 
-            # рисуем врым на месте НЛО
+            # рисуем взрыв на месте НЛО
             Boom(a.rect.center, boom_sprites, booms)
             sound_boom.play()
 
         # столкновение игрока и НЛО
-        if pg.sprite.spritecollide(ship, aliens, False):
-            gameover = True
+        # if pg.sprite.spritecollide(ship, aliens, False):
+        #     gameover = True
     
-        
+        #print(TICKS, len(aliens), aliens)
 
         aliens.update(ship)
         aliens.draw(mw)

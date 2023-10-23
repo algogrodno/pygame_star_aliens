@@ -16,7 +16,8 @@ def set_text(scr, text, size = 10, pos = (0,0), color = (255,255,55)):
 def alien_add(aliens, speed):      
     x = randint(-200, WINDOWS_SIZE[0]+200) 
     y = -100
-    aliens.add(Alien('pic\\starship4.png', x, y, 100,90, speed))
+    #if len(aliens) <1:
+    aliens.add(Alien('pic\\ufo1.png', x, y, 100,90, speed))
     return aliens
 
 def game_over(scr):
