@@ -3,7 +3,7 @@ import pygame as pg
 from random import randint
 from config import *
 #from math import sqrt
-#from sprites import Alien
+from sprites import Alien
 
 def set_text(scr, text, size = 10, pos = (0,0), color = (255,255,55)):
     font = pg.font.Font(None, size)
@@ -13,20 +13,29 @@ def set_text(scr, text, size = 10, pos = (0,0), color = (255,255,55)):
 
 
 
-def alien_add(aliens, ship):
-    dist = 0
-    # while dist<200:
-    x = randint(-300, WINDOWS_SIZE[0]+300)                         
-    #y = randint(1, WINDOWS_SIZE[1])
-        # dx = ship.x - x
-        # dy = ship.y - y
-        # dist = sqrt( dx**2 + dy**2 )
-        
-    # l = randint(1,4) 
-    # if l == 1: y = -90
-    # elif l == 2: x = WINDOWS_SIZE[0] + 100
-    # elif l == 3: y = WINDOWS_SIZE[1] + 90
-    # else: x = -100
+def alien_add(aliens, speed):      
+    x = randint(-200, WINDOWS_SIZE[0]+200) 
     y = -100
-    aliens.append(Alien('pic\\starship4.png', x, y, 100,90))
+    aliens.add(Alien('pic\\starship4.png', x, y, 100,90, speed))
     return aliens
+
+def game_over(scr):
+    background = pg.transform.scale(pg.image.load('pic\\game_over.jpg'),(WINDOWS_SIZE))
+    scr.blit(background,(0,0))
+
+def sprites_load(folder:str, size:tuple, colorkey:tuple = None):    
+    sprites = []
+    load = True
+    num = 1
+    while load:
+        try:
+            spr = pg.transform.scale(pg.image.load(f'{folder}\\boom{num}.png'),size)
+            if colorkey: spr.set_colorkey((0,0,0))
+            sprites.append(spr)
+            num += 1
+        except:
+            load = False
+    return sprites
+
+if __name__ == '__main__':
+    pass

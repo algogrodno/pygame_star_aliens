@@ -8,7 +8,7 @@ from random import randint
 from time import time
 pg.init()
 
-pg.display.set_caption("My game")
+pg.display.set_caption("Star Aliens")
 mw = pg.display.set_mode(WINDOWS_SIZE)
 mw.fill(BACK_COLOR)
 clock = pg.time.Clock()
@@ -16,145 +16,169 @@ clock = pg.time.Clock()
 background = pg.transform.scale(pg.image.load('pic\\fon1.jpg'),(WINDOWS_SIZE))
 ship = Ship('pic\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]/2,70,100)
 
-s_fon = pg.mixer.Sound('snd\\fon1.mp3')
-s_fire = pg.mixer.Sound('snd\\fire1.mp3')
-s_fon.play(-1)
+sound_fon = pg.mixer.Sound('snd\\fon1.mp3')
+sound_fire = pg.mixer.Sound('snd\\fire1.mp3')
+sound_boom = pg.mixer.Sound('snd\\boom1.mp3')
+sound_fon.set_volume(0.01)
+sound_fire.set_volume(0.1)
+sound_boom.set_volume(0.1)
+sound_fon.play(-1)
 
-starss = pg.sprite.Group()
+stars = pg.sprite.Group()
 fiers = pg.sprite.Group()
 aliens = pg.sprite.Group()
-for i in range(20): starss.add(Star(True))
+booms = pg.sprite.Group()
+for i in range(20): stars.add(Star(True))
 
 
-
-fl = []
-stars = []
 
 # aliens = []
 play = True
 
 key_wait = 0
-
+#boom_sprites = sprites_load('pic\\boom2', (100,100), (0,0,0))
+#boom_sprites = sprites_load('pic\\boom3', (100,100))
+boom_sprites = sprites_load('pic\\boom4', (100,100), (0,0,0))
 SCORE = 0
 TICKS = 0
 ticks = 0
 fps = 0
 t = time()
-while play:    
-    mw.blit(background,(0,0))
+gameover = False
+
+while play:
+    for e in pg.event.get():            
+            if e.type == pg.QUIT or \
+                    (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):
+                play  = False    
     
+            if e.type == pg.KEYDOWN:
+                if e.key == pg.K_UP:
+                    print('up-ok')
+                elif e.key == pg.K_DOWN:
+                    print('down-ok')
+            elif e.type == pg.KEYUP:
+                if e.key == pg.K_UP:
+                    print('up-no')
+                elif e.key == pg.K_DOWN:
+                    print('down-no')
+
+    if gameover:
+        game_over(mw)        
+    else:
+        mw.blit(background,(0,0))
+
+        
+
+        if pg.key.get_pressed()[pg.K_DOWN]:
+            ship.movey = 'down'
+        if pg.key.get_pressed()[pg.K_UP]:
+            ship.movey = 'up'
+        if pg.key.get_pressed()[pg.K_RIGHT]:
+            ship.movex = 'right'
+        if pg.key.get_pressed()[pg.K_LEFT]:
+            ship.movex = 'left'
+        if pg.key.get_pressed()[pg.K_SPACE]: # ОГОНЬ
+            ship.fire(fiers, sound_fire, FIRE_WAIT)  
+
+        if pg.key.get_pressed()[pg.K_1]: # скорость корабля -
+            ship.speed -= 1        
+        if pg.key.get_pressed()[pg.K_2]: # скорость корабля +
+            ship.speed += 1
+        if pg.key.get_pressed()[pg.K_3]: # скорость стрельбы +        
+            if FIRE_WAIT > 2:  FIRE_WAIT -= 1 
+            else: FIRE_WAIT =  1
+        if pg.key.get_pressed()[pg.K_4]: # скорость стрельбы -
+            FIRE_WAIT += 1    
+        if pg.key.get_pressed()[pg.K_5]: # скорость НЛО +
+            for alien in aliens:
+                alien.speed += 1        
+        if pg.key.get_pressed()[pg.K_6]: # скорость НЛО +
+            for alien in aliens:            
+                if alien.speed > 2:  alien.speed -= 1 
+                else: alien.speed =  1
+        
+        if pg.key.get_pressed()[pg.K_q]:    # Добавить НЛО
+            alien_add(aliens, ALIEN_SPEED)
+            alien_wait = 5
+        if pg.key.get_pressed()[pg.K_a]:  # включить/выключить появление НЛО
+            if key_wait == 0:
+                ALIEN = not ALIEN
+                key_wait = KEY_WAIT
+            else:
+                key_wait -= 1 
+        
+        
+        
+
+        # добавляем НЛО через заданный период
+        if TICKS % NEW_ALIEN_WAIT == 0 :
+            if ALIEN and len(aliens) < ALIENS_LIMIT:  alien_add(aliens, ALIEN_SPEED)
+
+
+        # попаднаия пуль в НЛО
+        collisions = pg.sprite.groupcollide(aliens, fiers, True, True)
+        for a, f in collisions.items():       
+            #print(a.rect.x, f[0].rect.x)
+            SCORE += 1
+            if SCORE % FIRE_BONUS == 0: 
+                # каждые десять очков бонус к стрельбе
+                FIRE_WAIT -= 2
+                if FIRE_WAIT<2:FIRE_WAIT = 2
+            NEW_ALIEN_WAIT -= 2
+            if NEW_ALIEN_WAIT <= 0 : NEW_ALIEN_WAIT = 4
+            ALIEN_SPEED += 0.05
+
+            # рисуем врым на месте НЛО
+            Boom(a.rect.center, boom_sprites, booms)
+            sound_boom.play()
+
+        # столкновение игрока и НЛО
+        if pg.sprite.spritecollide(ship, aliens, False):
+            gameover = True
+    
+        
+
+        aliens.update(ship)
+        aliens.draw(mw)
+        
+        fiers.update()
+        fiers.draw(mw)            
+                    
+        ship.update()
+        ship.draw(mw)
+
+        booms.update()
+        booms.draw(mw)
+        
+        # подсчет FPS
+        t2 = time()
+        if t2-t > 1:                        
+            t = t2        
+            fps = TICKS-ticks
+            ticks = TICKS
+
+        # текст
+        set_text(mw, f"Скорость - {ship.speed}", 30, (10,10))    
+        set_text(mw, f"Огонь - {int(FIRE_WAIT)}", 30, (870,10))
+        set_text(mw, int(ALIEN), 30, (960,680))
+        set_text(mw, f"Чужих - {len(aliens)}", 30, (10,680))
+        set_text(mw,f"ОЧКИ - {SCORE}", 40, (500,10))
+        set_text(mw,f"звезд-{len(stars)}", 30, (500,680))
+        set_text(mw, f"x-{ship.rect.x} y-{ship.rect.y}", 30, (150,680))
+        set_text(mw,f"fps-{fps}", 30, (700,680))
+
+    
+    # добавляем звезды через заданный период
     if TICKS % STAR_WAIT == 0:        
-        starss.add(Star())
-    starss.update()
-    starss.draw(mw)
+        stars.add(Star())
 
-    for e in pg.event.get():
-        # print(e)
-        if e.type == pg.QUIT or \
-                (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):
-            play  = False
-        # if e.type == pg.KEYDOWN:
-        #     if e.key == pg.K_UP:
-        #         ship.sety(True)
-    if pg.key.get_pressed()[pg.K_DOWN]:
-        ship.movey = 'down'
-    if pg.key.get_pressed()[pg.K_UP]:
-        ship.movey = 'up'
-    if pg.key.get_pressed()[pg.K_RIGHT]:
-        ship.movex = 'right'
-    if pg.key.get_pressed()[pg.K_LEFT]:
-        ship.movex = 'left'
-    if pg.key.get_pressed()[pg.K_2]:
-        ship.speed += 1
-    if pg.key.get_pressed()[pg.K_1]:
-        ship.speed -= 1
-    if pg.key.get_pressed()[pg.K_4]:
-        FIRE_WAIT += 1
-    if pg.key.get_pressed()[pg.K_3]:
-        if FIRE_WAIT > 2:  FIRE_WAIT -= 1 
-        else: FIRE_WAIT =  1
-    if pg.key.get_pressed()[pg.K_5]:
-        for alien in aliens:
-            alien.speed += 1        
-    if pg.key.get_pressed()[pg.K_6]:
-        for alien in aliens:            
-            if alien.speed > 2:  alien.speed -= 1 
-            else: alien.speed =  1
-    if pg.key.get_pressed()[pg.K_SPACE]:
-        ship.fire(fiers)
-        s_fire.play() # звук выстрела
-        #fl.append(Fire())
-        #fl[len(fl)-1].fire(ship, FIRE_WAIT, s_fire)    
-    if pg.key.get_pressed()[pg.K_q]:
-        
-        aliens = alien_add(aliens, ship)
-        alien_wait = 5
-        
-    if pg.key.get_pressed()[pg.K_a]:
-        if key_wait == 0:
-            ALIEN = not ALIEN
-            key_wait = KEY_WAIT
-        else:
-            key_wait -= 1 
-    
-    
-
-        
-    
-    
-    if TICKS % NEW_ALIEN_WAIT == 0 :
-        if ALIEN and len(aliens) < ALIENS_LIMIT:  
-            aliens.add(Alien('pic\\starship4.png', 
-                            randint(-300, WINDOWS_SIZE[0]+300), -100, 100,90))
-    
-    
-    aliens.update(ship)
-    aliens.draw(mw)
-    
-    for f in fl:
-        if f.visible: f.update(mw)
-        else: fl.remove(f)
-
-
-    
-
-
-    for f in fl:        
-        for alien in aliens:
-            if (f.y <= alien.y + alien.h and f.y > alien.y) and \
-                    (f.x > alien.x and f.x + f.w < alien.x + alien.w) and \
-                    alien.visible and f.visible:
-                alien.visible = False
-                f.visible = False
-                SCORE += 1
-                NEW_ALIEN_WAIT -=5 
-                if NEW_ALIEN_WAIT <= 0 : NEW_ALIEN_WAIT = 3
-                ALIEN_SPEED += 1
-
-                
-                
-    ship.update()
-    ship.draw(mw)
-    
-    t2 = time()
-    if t2-t > 1:                        
-        t = t2        
-        fps = TICKS-ticks
-        ticks = TICKS
-
-    set_text(mw, f"Скорость - {ship.speed}", 30, (10,10))    
-    set_text(mw, f"Огонь - {int(FIRE_WAIT)}", 30, (870,10))
-    set_text(mw, int(ALIEN), 30, (960,680))
-    set_text(mw, f"Чужих - {len(aliens)}", 30, (10,680))
-    set_text(mw,f"ОЧКИ - {SCORE}", 40, (500,10))
-    set_text(mw,f"звезд-{len(starss)}", 30, (500,680))
-    set_text(mw, f"x-{ship.rect.x} y-{ship.rect.y}", 30, (150,680))
-    set_text(mw,f"fps-{fps}", 30, (700,680))
-
+    stars.update()
+    stars.draw(mw)
 
     pg.display.update()
     clock.tick(FPS)
-    pg.event.pump()
+    #pg.event.pump()
     TICKS += 1
 
 pg.quit()

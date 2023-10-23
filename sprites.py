@@ -3,13 +3,13 @@ from config import *
 from random import randint
 from math import sqrt
 from time import time
-from other import set_text
+
 
 class Game_sprite(pg.sprite.Sprite):
     
-    def __init__(self, image, x, y, w = None, h = None) -> None:
-        super().__init__()
-        self.image = (pg.image.load(image))
+    def __init__(self, image = None, x = 0, y = 0, w = None, h = None) -> None:
+        super().__init__()        
+        self.image = (pg.image.load(image)) if image else None   
         if w and h:
             self.image = pg.transform.scale(self.image, (w,h))        
         self.rect  = self.image.get_rect()
@@ -54,21 +54,23 @@ class Ship(Game_sprite):
         self.movex = ''
         self.movey = ''
         if self.fire_wait>0: self.fire_wait -= 1
+        
 
-    def fire(self,  fiers):
+    def fire(self,  fiers, sound, fire_wait):        
         if self.fire_wait == 0:
             fiers.add(Fire(self.rect.centerx, self.rect.top))                       
-            self.fire_wait = FIRE_WAIT
+            self.fire_wait = fire_wait
+            sound.play() # звук выстрела
             
         
         
         
 
 class Alien(Game_sprite):
-    def __init__(self, image, x, y, w=None, h=None) -> None:
+    def __init__(self, image, x, y, w=None, h=None, speed=1) -> None:
         super().__init__(image, x, y, w, h)        
         self.visible = True
-        self.speed = ALIEN_SPEED
+        self.speed = speed
         self.x = x # свой х и у т.к. rect.x - округляет до целого
         self.y = y
     def update(self, ship):
@@ -94,30 +96,46 @@ class Alien(Game_sprite):
 class Fire(Game_sprite):
     def __init__(self, x = 0, y = 0, w=None, h=None) -> None:
         super().__init__('pic\\fire2.png', x, y, w = None, h = None)
+        self.rect.x -= self.w/2 # отступ на пол спрайта чтобы было посередине
         self.visible = False
         self.speed = 20
-        
-    
-    
-        
             
     
-    def update(self, scr):
-        self.y -= self.speed
-        if self.y + self.h < 0:
+    def update(self):
+        self.rect.y -= self.speed
+        if self.rect.bottom < 0:
             self.kill()
-        
+
+
+
+class Boom(pg.sprite.Sprite):
+    def __init__(self, ufo_center, boom_sprites, booms) -> None:
+        super().__init__() 
+        #global booms, boom_sprites              
+        self.frames = boom_sprites
+        self.frame_rate = 1   
+        self.frame_num = 0
+        self.image = boom_sprites[0]
+        self.rect = self.image.get_rect()
+        self.rect.center = ufo_center
+        self.add(booms)
+    
+    def update(self):
+        self.image = self.frames[self.frame_num]
+        self.frame_num += 1
+        if self.frame_num == len(self.frames)-1:
+            self.kill()
 
 
 class Star(pg.sprite.Sprite):
     def __init__(self, full_y = False) -> None:
         super().__init__()
-        self.r = randint(1,2)
+        self.r = randint(1,3)
         self.image =  pg.Surface((self.r*2,self.r*2), pg.SRCALPHA)
         self.rect = self.image.get_rect()
         self.rect.x = randint(0, WINDOWS_SIZE[0])
         self.rect.y = 0 if not full_y else randint(1,WINDOWS_SIZE[1])
-        self.speed = randint(1,5)        
+        self.speed = randint(3,10)        
         self.color = (255, 255, 255, 255)
         self.shine_speed = randint(10,100)
         self.shine_deep = randint(150,250)
@@ -149,4 +167,3 @@ class Star(pg.sprite.Sprite):
 
 
 
-    
