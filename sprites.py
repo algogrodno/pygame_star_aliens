@@ -88,8 +88,8 @@ class Sprite_animate(Game_sprite):
         self.image=self.frames[0]
         super().__init__(x=x, y=y)        
         self.frame_rate = 1 # через столько тиков 1 farme
-        self.frame_num = 0 # номер кадра анимации 
-        self.tick_n = 0 # номер тика жизни этого объекта
+        self.frame_num = 0 # стартовый номер кадра анимации 
+        self.tick_n = 0 # номер тика с начала жизни этого объекта
         
     def next_frame(self):
         if self.tick_n % self.frame_rate == 0:
@@ -212,6 +212,9 @@ class Meteor(Sprite_animate, Sprite_rotate):
         
         if self.type > 1: self.next_frame()        
         if self.type < 3: self.spr_rotate_normal()
+
+        if self.rect.top > WINDOWS_SIZE[1]:
+            self.kill()
         
 
 class Fire(Game_sprite):

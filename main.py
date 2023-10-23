@@ -187,6 +187,7 @@ while play:
         set_text(mw, f"Чужих - {len(aliens)}", 30, (10,680))
         set_text(mw,f"ОЧКИ - {SCORE}", 40, (500,10))
         set_text(mw,f"звезд-{len(stars)}", 30, (500,680))
+        set_text(mw,f"метеоров-{len(meteors)}", 30, (300,680))
         set_text(mw, f"x-{ship.rect.x} y-{ship.rect.y}", 30, (150,680))
         set_text(mw,f"fps-{fps}", 30, (700,680))
 
