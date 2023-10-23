@@ -13,18 +13,24 @@ mw = pg.display.set_mode(WINDOWS_SIZE)
 mw.fill(BACK_COLOR)
 clock = pg.time.Clock()
 
-background = pg.transform.scale(pg.image.load('pic\\fon1.jpg'),(WINDOWS_SIZE))
 
+background = pg.transform.scale(pg.image.load('pic\\fon1.jpg'),(WINDOWS_SIZE))
 ship = Ship('pic\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]/2,70,100)
+
+#boom_sprites = sprites_load('pic\\boom2', (100,100), (0,0,0))
+#boom_sprites = sprites_load('pic\\boom3', (100,100))
+boom_sprites = sprites_load('pic\\boom4', 'boom', (100,100), (0,0,0))
+ufo_sprites = sprites_load('pic\\ufo1', 'ufo', (100,90))
+
 
 sound_fon = pg.mixer.Sound('snd\\fon1.mp3')
 sound_fire = pg.mixer.Sound('snd\\fire1.mp3')
 sound_boom = pg.mixer.Sound('snd\\boom1.mp3')
-
 sound_fon.set_volume(0.1)
 sound_fire.set_volume(0.1)
 sound_boom.set_volume(0.1)
 sound_fon.play(-1)
+
 
 stars = pg.sprite.Group()
 fiers = pg.sprite.Group()
@@ -32,12 +38,6 @@ aliens = pg.sprite.Group()
 booms = pg.sprite.Group()
 
 for i in range(20): stars.add(Star(True))
-
-
-
-#boom_sprites = sprites_load('pic\\boom2', (100,100), (0,0,0))
-#boom_sprites = sprites_load('pic\\boom3', (100,100))
-boom_sprites = sprites_load('pic\\boom4', (100,100), (0,0,0))
 
 SCORE = 0
 TICKS = 0
@@ -101,7 +101,7 @@ while play:
                 else: alien.speed =  1
         
         if pg.key.get_pressed()[pg.K_q]:    # Добавить НЛО
-            alien_add(aliens, ALIEN_SPEED)
+            alien_add(aliens, ALIEN_SPEED, ufo_sprites)
             alien_wait = 5
         if pg.key.get_pressed()[pg.K_a]:  # включить/выключить появление НЛО
             if key_wait == 0:
@@ -115,7 +115,7 @@ while play:
 
         # добавляем НЛО через заданный период
         if TICKS % NEW_ALIEN_WAIT == 0 :
-            if ALIEN and len(aliens) < ALIENS_LIMIT:  alien_add(aliens, ALIEN_SPEED)
+            if ALIEN and len(aliens) < ALIENS_LIMIT:  alien_add(aliens, ALIEN_SPEED, ufo_sprites)
 
 
         # попаднаия пуль в НЛО

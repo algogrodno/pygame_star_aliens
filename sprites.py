@@ -6,17 +6,38 @@ from time import time
 
 
 class Game_sprite(pg.sprite.Sprite):    
-    def __init__(self, image = None, x = 0, y = 0, w = None, h = None) -> None:
+    def __init__(
+            self, image = None, 
+            x = 0, y = 0, 
+            w = None, h = None,
+            sprites_list = None) -> None:
+        
         super().__init__()        
-        self.image = (pg.image.load(image)) if image else None        
-        if w and h:
-            self.image = pg.transform.scale(self.image, (w,h))        
+        if sprites_list:
+            self.frames = sprites_list
+            self.frame_rate = 1   
+            self.frame_num = 0
+            self.image = self.frames[self.frame_num]            
+        else:
+            self.image = (pg.image.load(image)) if image else None        
+            if w and h:
+                self.image = pg.transform.scale(self.image, (w,h))        
+
         self.rect  = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.h = self.rect.height
         self.w = self.rect.width
-        self.c = (self.rect.x + self.w/2, self.rect.y + self.h/2 )
+        #self.c = (self.rect.x + self.w/2, self.rect.y + self.h/2 )
+
+    def next_frame(self):
+        self.image = self.frames[self.frame_num]
+        self.image_orig = self.image
+        self.frame_num += 1
+        if self.frame_num >= len(self.frames):
+            self.frame_num = 0
+
+        
 
     def draw(self, scr):
         scr.blit(self.image, (self.rect.x, self.rect.y))
@@ -61,13 +82,11 @@ class Ship(Game_sprite):
             self.fire_wait = fire_wait
             sound.play() # звук выстрела
             
-        
-        
-        
+       
 
 class Alien(Game_sprite):
-    def __init__(self, image, x, y, w=None, h=None, speed=1) -> None:
-        super().__init__(image, x, y, w, h)        
+    def __init__(self, image, x, y, w=None, h=None, speed=1, ufo_sprites=None) -> None:
+        super().__init__(image, x, y, w, h, ufo_sprites)        
         self.image_orig = self.image
         self.type = randint(1,3)
         self.visible = True
@@ -75,10 +94,15 @@ class Alien(Game_sprite):
         self.x = x # свой х и у т.к. rect.x - округляет до целого
         self.y = y # а для подсчета направления по вектору нужны дроби
         
+        #для анимации        
+        self.frame_rate = randint(4,10) # через n тиков смена кадра
+        self.tick_n = 0
+
+
         #для вращения
         #self.rotate = randint(-10, 10)        
         self.angle_rotate = randint(-15, 15) # для постоянного вращения
-        self.angle_max = randint(1,20)
+        self.angle_max = randint(7,20)
         self.angle_min = -self.angle_max        
         self.angle = randint(self.angle_min, self.angle_max)
         self.angle_step = 1 if self.angle >= 0 else -1
@@ -92,8 +116,12 @@ class Alien(Game_sprite):
         self.y += dy / dist * self.speed
         self.rect.x = self.x
         self.rect.y = self.y
-
+        
+        if self.tick_n % self.frame_rate == 0:
+            self.next_frame()
+        self.tick_n += 1
         self.spr_rotate_back()
+
     
     def spr_rotate(self, angle):
         '''поворачивает спрайт на установленный градус'''        
@@ -131,11 +159,6 @@ class Alien(Game_sprite):
 
 
 
-
-    
-
-
-
 class Fire(Game_sprite):
     def __init__(self, x = 0, y = 0, w=None, h=None) -> None:
         super().__init__('pic\\fire2.png', x, y, w = None, h = None)
@@ -155,7 +178,7 @@ class Boom(pg.sprite.Sprite):
     def __init__(self, ufo_center, boom_sprites, booms) -> None:
         super().__init__() 
         #global booms, boom_sprites              
-        self.frames = boom_sprites
+        self.frames = boom_sprites        
         self.frame_rate = 1   
         self.frame_num = 0
         self.image = boom_sprites[0]
@@ -163,13 +186,15 @@ class Boom(pg.sprite.Sprite):
         self.rect.center = ufo_center
         self.add(booms)
     
-    def update(self):
+    def next_frame(self):
         self.image = self.frames[self.frame_num]
         self.frame_num += 1
+        
+    
+    def update(self):
+        self.next_frame()
         if self.frame_num == len(self.frames)-1:
             self.kill()
-
-
 class Star(pg.sprite.Sprite):
     def __init__(self, full_y = False) -> None:
         super().__init__()
