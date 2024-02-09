@@ -1,0 +1,591 @@
+[
+    {
+        "label": "remove",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "pygame",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pygame",
+        "description": "pygame",
+        "detail": "pygame",
+        "documentation": {}
+    },
+    {
+        "label": "set_text",
+        "importPath": "other",
+        "description": "other",
+        "isExtraImport": true,
+        "detail": "other",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "other",
+        "description": "other",
+        "isExtraImport": true,
+        "detail": "other",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "sprites",
+        "description": "sprites",
+        "isExtraImport": true,
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Alien",
+        "importPath": "sprites",
+        "description": "sprites",
+        "isExtraImport": true,
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "config",
+        "description": "config",
+        "isExtraImport": true,
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sqrt",
+        "importPath": "math",
+        "description": "math",
+        "isExtraImport": true,
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "WINDOWS_SIZE",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "WINDOWS_SIZE = (1000,  700)\nFPS = 60\nBLACK = (0,0,0)\nBLUE = (0,0,255)\nBACK_COLOR = (33,33,3)\nFIRE_WAIT = FPS / 2\nFIRE_BONUS = 10 # через сколько очков повысть скорость стрельбы\nSTAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "FPS",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "FPS = 60\nBLACK = (0,0,0)\nBLUE = (0,0,255)\nBACK_COLOR = (33,33,3)\nFIRE_WAIT = FPS / 2\nFIRE_BONUS = 10 # через сколько очков повысть скорость стрельбы\nSTAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "BLACK",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "BLACK = (0,0,0)\nBLUE = (0,0,255)\nBACK_COLOR = (33,33,3)\nFIRE_WAIT = FPS / 2\nFIRE_BONUS = 10 # через сколько очков повысть скорость стрельбы\nSTAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "BLUE",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "BLUE = (0,0,255)\nBACK_COLOR = (33,33,3)\nFIRE_WAIT = FPS / 2\nFIRE_BONUS = 10 # через сколько очков повысть скорость стрельбы\nSTAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "BACK_COLOR",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "BACK_COLOR = (33,33,3)\nFIRE_WAIT = FPS / 2\nFIRE_BONUS = 10 # через сколько очков повысть скорость стрельбы\nSTAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "FIRE_WAIT",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "FIRE_WAIT = FPS / 2\nFIRE_BONUS = 10 # через сколько очков повысть скорость стрельбы\nSTAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "FIRE_BONUS",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "FIRE_BONUS = 10 # через сколько очков повысть скорость стрельбы\nSTAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "STAR_WAIT",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "STAR_WAIT = 10 # 1 раз за столько тиков\nNEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "NEW_ALIEN_WAIT",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "NEW_ALIEN_WAIT = 100\nNEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "NEW_METEOR_WAIT",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "NEW_METEOR_WAIT = 100\nALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "ALIEN",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "ALIEN = True\nKEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "KEY_WAIT",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "KEY_WAIT = FPS/20\nALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "ALIEN_SPEED",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "ALIEN_SPEED = 1\nALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "ALIENS_LIMIT",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "ALIENS_LIMIT = 50",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "mw",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "mw = pg.display.set_mode(WINDOWS_SIZE)\nmw.fill(BACK_COLOR)\nclock = pg.time.Clock()\nbackground = pg.transform.scale(pg.image.load('pic\\\\fon1.jpg'),(WINDOWS_SIZE))\nship = Ship('pic\\\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]-150,70,100)\n#boom_sprites = sprites_load('pic\\\\boom2', 'boom',(100,100), (0,0,0))\n#boom_sprites = sprites_load('pic\\\\boom3', 'boom', (100,100))\nboom_sprites = sprites_load('pic\\\\boom4', 'boom', (100,100), (0,0,0))\nufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "clock",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "clock = pg.time.Clock()\nbackground = pg.transform.scale(pg.image.load('pic\\\\fon1.jpg'),(WINDOWS_SIZE))\nship = Ship('pic\\\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]-150,70,100)\n#boom_sprites = sprites_load('pic\\\\boom2', 'boom',(100,100), (0,0,0))\n#boom_sprites = sprites_load('pic\\\\boom3', 'boom', (100,100))\nboom_sprites = sprites_load('pic\\\\boom4', 'boom', (100,100), (0,0,0))\nufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "background",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "background = pg.transform.scale(pg.image.load('pic\\\\fon1.jpg'),(WINDOWS_SIZE))\nship = Ship('pic\\\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]-150,70,100)\n#boom_sprites = sprites_load('pic\\\\boom2', 'boom',(100,100), (0,0,0))\n#boom_sprites = sprites_load('pic\\\\boom3', 'boom', (100,100))\nboom_sprites = sprites_load('pic\\\\boom4', 'boom', (100,100), (0,0,0))\nufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]\n# print(len(meteors_sprites))",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ship",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "ship = Ship('pic\\\\starship2.png', WINDOWS_SIZE[0]/2,WINDOWS_SIZE[1]-150,70,100)\n#boom_sprites = sprites_load('pic\\\\boom2', 'boom',(100,100), (0,0,0))\n#boom_sprites = sprites_load('pic\\\\boom3', 'boom', (100,100))\nboom_sprites = sprites_load('pic\\\\boom4', 'boom', (100,100), (0,0,0))\nufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]\n# print(len(meteors_sprites))\nsound_fon = pg.mixer.Sound('snd\\\\fon1.mp3')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "#boom_sprites",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "#boom_sprites = sprites_load('pic\\\\boom2', 'boom',(100,100), (0,0,0))\n#boom_sprites = sprites_load('pic\\\\boom3', 'boom', (100,100))\nboom_sprites = sprites_load('pic\\\\boom4', 'boom', (100,100), (0,0,0))\nufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]\n# print(len(meteors_sprites))\nsound_fon = pg.mixer.Sound('snd\\\\fon1.mp3')\nsound_fire = pg.mixer.Sound('snd\\\\fire1.mp3')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "#boom_sprites",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "#boom_sprites = sprites_load('pic\\\\boom3', 'boom', (100,100))\nboom_sprites = sprites_load('pic\\\\boom4', 'boom', (100,100), (0,0,0))\nufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]\n# print(len(meteors_sprites))\nsound_fon = pg.mixer.Sound('snd\\\\fon1.mp3')\nsound_fire = pg.mixer.Sound('snd\\\\fire1.mp3')\nsound_boom = pg.mixer.Sound('snd\\\\boom1.mp3')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "boom_sprites",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "boom_sprites = sprites_load('pic\\\\boom4', 'boom', (100,100), (0,0,0))\nufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]\n# print(len(meteors_sprites))\nsound_fon = pg.mixer.Sound('snd\\\\fon1.mp3')\nsound_fire = pg.mixer.Sound('snd\\\\fire1.mp3')\nsound_boom = pg.mixer.Sound('snd\\\\boom1.mp3')\nsound_fon.set_volume(0.1)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ufo_sprites",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "ufo_sprites = sprites_load('pic\\\\ufo1', 'ufo', (100,90))\nmeteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]\n# print(len(meteors_sprites))\nsound_fon = pg.mixer.Sound('snd\\\\fon1.mp3')\nsound_fire = pg.mixer.Sound('snd\\\\fire1.mp3')\nsound_boom = pg.mixer.Sound('snd\\\\boom1.mp3')\nsound_fon.set_volume(0.1)\nsound_fire.set_volume(0.1)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "meteors_sprites",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "meteors_sprites = [sprites_load('pic\\\\meteor1', 'meteor', (80,80)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (60,60)),\n                   sprites_load('pic\\\\meteor1', 'meteor', (40,40))]\n# print(len(meteors_sprites))\nsound_fon = pg.mixer.Sound('snd\\\\fon1.mp3')\nsound_fire = pg.mixer.Sound('snd\\\\fire1.mp3')\nsound_boom = pg.mixer.Sound('snd\\\\boom1.mp3')\nsound_fon.set_volume(0.1)\nsound_fire.set_volume(0.1)\nsound_boom.set_volume(0.1)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "sound_fon",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "sound_fon = pg.mixer.Sound('snd\\\\fon1.mp3')\nsound_fire = pg.mixer.Sound('snd\\\\fire1.mp3')\nsound_boom = pg.mixer.Sound('snd\\\\boom1.mp3')\nsound_fon.set_volume(0.1)\nsound_fire.set_volume(0.1)\nsound_boom.set_volume(0.1)\nsound_fon.play(-1)\nstars = pg.sprite.Group()\nfiers = pg.sprite.Group()\naliens = pg.sprite.Group()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "sound_fire",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "sound_fire = pg.mixer.Sound('snd\\\\fire1.mp3')\nsound_boom = pg.mixer.Sound('snd\\\\boom1.mp3')\nsound_fon.set_volume(0.1)\nsound_fire.set_volume(0.1)\nsound_boom.set_volume(0.1)\nsound_fon.play(-1)\nstars = pg.sprite.Group()\nfiers = pg.sprite.Group()\naliens = pg.sprite.Group()\nbooms = pg.sprite.Group()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "sound_boom",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "sound_boom = pg.mixer.Sound('snd\\\\boom1.mp3')\nsound_fon.set_volume(0.1)\nsound_fire.set_volume(0.1)\nsound_boom.set_volume(0.1)\nsound_fon.play(-1)\nstars = pg.sprite.Group()\nfiers = pg.sprite.Group()\naliens = pg.sprite.Group()\nbooms = pg.sprite.Group()\nmeteors = pg.sprite.Group()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "stars",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "stars = pg.sprite.Group()\nfiers = pg.sprite.Group()\naliens = pg.sprite.Group()\nbooms = pg.sprite.Group()\nmeteors = pg.sprite.Group()\nfor i in range(20): stars.add(Star(True))\nSCORE = 0\nTICKS = 0\nticks = 0\nfps = 0",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fiers",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "fiers = pg.sprite.Group()\naliens = pg.sprite.Group()\nbooms = pg.sprite.Group()\nmeteors = pg.sprite.Group()\nfor i in range(20): stars.add(Star(True))\nSCORE = 0\nTICKS = 0\nticks = 0\nfps = 0\nkey_wait = 0",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "aliens",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "aliens = pg.sprite.Group()\nbooms = pg.sprite.Group()\nmeteors = pg.sprite.Group()\nfor i in range(20): stars.add(Star(True))\nSCORE = 0\nTICKS = 0\nticks = 0\nfps = 0\nkey_wait = 0\nplay = True",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "booms",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "booms = pg.sprite.Group()\nmeteors = pg.sprite.Group()\nfor i in range(20): stars.add(Star(True))\nSCORE = 0\nTICKS = 0\nticks = 0\nfps = 0\nkey_wait = 0\nplay = True\ngameover = False",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "meteors",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "meteors = pg.sprite.Group()\nfor i in range(20): stars.add(Star(True))\nSCORE = 0\nTICKS = 0\nticks = 0\nfps = 0\nkey_wait = 0\nplay = True\ngameover = False\nt = time()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "SCORE",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "SCORE = 0\nTICKS = 0\nticks = 0\nfps = 0\nkey_wait = 0\nplay = True\ngameover = False\nt = time()\nwhile play:\n    for e in pg.event.get():            ",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "TICKS",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "TICKS = 0\nticks = 0\nfps = 0\nkey_wait = 0\nplay = True\ngameover = False\nt = time()\nwhile play:\n    for e in pg.event.get():            \n            if e.type == pg.QUIT or \\",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ticks",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "ticks = 0\nfps = 0\nkey_wait = 0\nplay = True\ngameover = False\nt = time()\nwhile play:\n    for e in pg.event.get():            \n            if e.type == pg.QUIT or \\\n                    (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "fps",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "fps = 0\nkey_wait = 0\nplay = True\ngameover = False\nt = time()\nwhile play:\n    for e in pg.event.get():            \n            if e.type == pg.QUIT or \\\n                    (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):\n                play  = False    ",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "key_wait",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "key_wait = 0\nplay = True\ngameover = False\nt = time()\nwhile play:\n    for e in pg.event.get():            \n            if e.type == pg.QUIT or \\\n                    (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):\n                play  = False    \n            # if e.type == pg.KEYDOWN:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "play",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "play = True\ngameover = False\nt = time()\nwhile play:\n    for e in pg.event.get():            \n            if e.type == pg.QUIT or \\\n                    (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):\n                play  = False    \n            # if e.type == pg.KEYDOWN:\n            #     if e.key == pg.K_UP:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "gameover",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "gameover = False\nt = time()\nwhile play:\n    for e in pg.event.get():            \n            if e.type == pg.QUIT or \\\n                    (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):\n                play  = False    \n            # if e.type == pg.KEYDOWN:\n            #     if e.key == pg.K_UP:\n            #         print('up-ok')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "t",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "t = time()\nwhile play:\n    for e in pg.event.get():            \n            if e.type == pg.QUIT or \\\n                    (e.type == pg.KEYDOWN and e.key == pg.K_ESCAPE):\n                play  = False    \n            # if e.type == pg.KEYDOWN:\n            #     if e.key == pg.K_UP:\n            #         print('up-ok')\n            #     elif e.key == pg.K_DOWN:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "set_text",
+        "kind": 2,
+        "importPath": "other",
+        "description": "other",
+        "peekOfCode": "def set_text(scr, text, size = 10, pos = (0,0), color = (255,255,55)):\n    font = pg.font.Font(None, size)\n    text_pic = font.render(str(text), True, color)\n    scr.blit(text_pic,pos)\ndef alien_add(aliens, speed, ufo_sprites):      \n    x = randint(-200, WINDOWS_SIZE[0]+200) \n    y = -100\n    # макс количество в конфиге ALIENS_LIMIT\n    aliens.add(Alien('111', x, y, 100, 90, speed, ufo_sprites))\n    return aliens",
+        "detail": "other",
+        "documentation": {}
+    },
+    {
+        "label": "alien_add",
+        "kind": 2,
+        "importPath": "other",
+        "description": "other",
+        "peekOfCode": "def alien_add(aliens, speed, ufo_sprites):      \n    x = randint(-200, WINDOWS_SIZE[0]+200) \n    y = -100\n    # макс количество в конфиге ALIENS_LIMIT\n    aliens.add(Alien('111', x, y, 100, 90, speed, ufo_sprites))\n    return aliens\ndef game_over(scr):\n    background = pg.transform.scale(pg.image.load('pic\\\\game_over.jpg'),(WINDOWS_SIZE))\n    scr.blit(background,(0,0))\ndef sprites_load(folder:str, file_name:str, size:tuple, colorkey:tuple = None):    ",
+        "detail": "other",
+        "documentation": {}
+    },
+    {
+        "label": "game_over",
+        "kind": 2,
+        "importPath": "other",
+        "description": "other",
+        "peekOfCode": "def game_over(scr):\n    background = pg.transform.scale(pg.image.load('pic\\\\game_over.jpg'),(WINDOWS_SIZE))\n    scr.blit(background,(0,0))\ndef sprites_load(folder:str, file_name:str, size:tuple, colorkey:tuple = None):    \n    sprites = []\n    load = True\n    num = 1\n    while load:\n        try:\n            spr = pg.transform.scale(pg.image.load(f'{folder}\\\\{file_name}{num}.png'),size)",
+        "detail": "other",
+        "documentation": {}
+    },
+    {
+        "label": "sprites_load",
+        "kind": 2,
+        "importPath": "other",
+        "description": "other",
+        "peekOfCode": "def sprites_load(folder:str, file_name:str, size:tuple, colorkey:tuple = None):    \n    sprites = []\n    load = True\n    num = 1\n    while load:\n        try:\n            spr = pg.transform.scale(pg.image.load(f'{folder}\\\\{file_name}{num}.png'),size)\n            if colorkey: spr.set_colorkey((0,0,0))\n            sprites.append(spr)\n            num += 1",
+        "detail": "other",
+        "documentation": {}
+    },
+    {
+        "label": "Game_sprite",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Game_sprite(pg.sprite.Sprite):    \n    def __init__(\n            self, image = None, \n            x = 0, y = 0, \n            w = None, h = None) -> None:\n        super().__init__()                \n        if image:\n            self.image = (pg.image.load(image)) if image else None        \n        if w and h:\n            self.image = pg.transform.scale(self.image, (w,h))        ",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Sprite_rotate",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Sprite_rotate(Game_sprite):\n    # параметры по умолчанию\n    # настраиваются для каждого спрайта\n    # для постоянного вращения\n    angle_rotate = 1 # шаг для постоянного вращения - влияет на скорость вращения\n    # для вращения вперед назад\n    angle_max = 10 \n    angle_min = -angle_max        \n    angle = 0 # стартовый угол \n    angle_step = 1 # шаг вращения",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Sprite_animate",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Sprite_animate(Game_sprite):\n    def __init__(self, x=0, y=0,  sprites_list=None) -> None:\n        self.frames = sprites_list        \n        self.image=self.frames[0]\n        super().__init__(x=x, y=y)        \n        self.frame_rate = 1 # через столько тиков 1 farme\n        self.frame_num = 0 # стартовый номер кадра анимации \n        self.tick_n = 0 # номер тика с начала жизни этого объекта\n    def next_frame(self):\n        if self.tick_n % self.frame_rate == 0:",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Ship",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Ship(Game_sprite):\n    def __init__(self, image, x, y, w=None, h=None) -> None:\n        super().__init__(image, x, y, w, h)\n        self.speed = 10\n        self.fire_wait = 0\n        self.movex = ''\n        self.movey = ''\n        self.fire_wait = 0\n    def update(self):\n        if self.movey == 'down':",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Alien",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Alien(Sprite_animate, Sprite_rotate):\n    def __init__(self, ufo_sprites=None, ufo_group=None) -> None:\n        x = randint(-200, WINDOWS_SIZE[0]+200) \n        y = -100\n        Sprite_animate.__init__(self, x=x, y=y, sprites_list=ufo_sprites)        \n        #Sprite_rotate.__init__(self)\n        self.type = randint(1,3)\n        self.visible = True\n        self.speed = ALIEN_SPEED\n        self.x = x # свой х и у т.к. rect.x - округляет до целого",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Meteor",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Meteor(Sprite_animate, Sprite_rotate):\n    def __init__(self, sprites: list=None, group: pg.sprite.Group=None) -> None:\n        x = randint(-100, WINDOWS_SIZE[0]+100) \n        y = -100\n        Sprite_animate.__init__(self, x=x, y=y, \n                                sprites_list=sprites[randint(0,randint(1,2))])        \n        self.type = randint(1,3)\n        self.visible = True\n        self.speed = randint(2,6)\n        self.x = x # свой х и у т.к. rect.x - округляет до целого",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Fire",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Fire(Game_sprite):\n    def __init__(self, x = 0, y = 0, w=None, h=None) -> None:\n        super().__init__('pic\\\\fire2.png', x, y, w = None, h = None)\n        self.rect.x -= self.rect.width/2 # отступ на пол спрайта чтобы было посередине\n        self.visible = False\n        self.speed = 20\n    def update(self):\n        self.rect.y -= self.speed\n        if self.rect.bottom < 0:\n            self.kill()",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Boom",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Boom(pg.sprite.Sprite):\n    def __init__(self, ufo_center, boom_sprites, booms) -> None:\n        super().__init__() \n        #global booms, boom_sprites              \n        self.frames = boom_sprites        \n        self.frame_rate = 1   \n        self.frame_num = 0\n        self.image = boom_sprites[0]\n        self.rect = self.image.get_rect()\n        self.rect.center = ufo_center",
+        "detail": "sprites",
+        "documentation": {}
+    },
+    {
+        "label": "Star",
+        "kind": 6,
+        "importPath": "sprites",
+        "description": "sprites",
+        "peekOfCode": "class Star(pg.sprite.Sprite):\n    def __init__(self, full_y = False) -> None:\n        super().__init__()\n        self.r = randint(1,3)\n        self.image =  pg.Surface((self.r*2,self.r*2), pg.SRCALPHA)\n        self.rect = self.image.get_rect()\n        self.rect.x = randint(0, WINDOWS_SIZE[0])\n        self.rect.y = 0 if not full_y else randint(1,WINDOWS_SIZE[1])\n        self.speed = randint(3,7)        \n        self.color = (255, 255, 255, 255)",
+        "detail": "sprites",
+        "documentation": {}
+    }
+]

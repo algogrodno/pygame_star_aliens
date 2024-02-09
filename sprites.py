@@ -176,7 +176,7 @@ class Alien(Sprite_animate, Sprite_rotate):
         self.rect.y = self.y
         
         self.next_frame()        
-        self.spr_rotate_fback()
+        #self.spr_rotate_fback()
 
 
 class Meteor(Sprite_animate, Sprite_rotate):
@@ -211,7 +211,7 @@ class Meteor(Sprite_animate, Sprite_rotate):
         self.rect.y = self.y
         
         if self.type > 1: self.next_frame()        
-        if self.type < 3: self.spr_rotate_normal()
+        #if self.type < 3: self.spr_rotate_normal()
 
         if self.rect.top > WINDOWS_SIZE[1]:
             self.kill()

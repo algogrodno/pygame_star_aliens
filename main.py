@@ -193,14 +193,15 @@ while play:
 
     
     # добавляем звезды через заданный период
-    # тут для того что бы ивдны были даже когда гамеовер
+    # тут для того что бы ивдны были даже когда гамеовер   
     
 
     
 
-    pg.display.update()
+    pg.display.flip()
     clock.tick(FPS)
     #pg.event.pump()
     TICKS += 1
+    pg.display.set_caption(f'{clock.get_fps(): .1f}')
 
 pg.quit()
