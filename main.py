@@ -6,6 +6,7 @@ from config import *
 from other import *
 from random import randint
 from time import time
+
 pg.init()
 
 pg.display.set_caption("Star Aliens")
