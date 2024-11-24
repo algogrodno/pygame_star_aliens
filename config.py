@@ -15,3 +15,4 @@ ALIENS_LIMIT = 50
 
 
 #привет1
+# hello2
