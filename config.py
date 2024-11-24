@@ -12,3 +12,6 @@ ALIEN = True
 KEY_WAIT = FPS/20
 ALIEN_SPEED = 1
 ALIENS_LIMIT = 50
+
+
+#привет1
